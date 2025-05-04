@@ -18,6 +18,20 @@ static_resources:
                       routes:
                         - match: { prefix: "/" }
                           route: { cluster: grpc_server }
+                          typed_per_filter_config:
+                            envoy.filters.http.cors:
+                              "@type": type.googleapis.com/envoy.extensions.filters.http.cors.v3.CorsPolicy
+                              allow_origin_string_match:
+                                - prefix: "*"
+                              allow_methods: "GET, POST, OPTIONS"
+                              allow_headers: "keep-alive,user-agent,cache-control,content-type,authorization,x-grpc-web,x-user-agent"
+                              max_age: "86400"
+                      cors:
+                        allow_origin_string_match:
+                          - prefix: "*"
+                        allow_methods: "GET, POST, OPTIONS"
+                        allow_headers: "keep-alive,user-agent,cache-control,content-type,authorization,x-grpc-web,x-user-agent"
+                        max_age: "86400"
                 http_filters:
                   - name: envoy.filters.http.grpc_web
                     typed_config:
