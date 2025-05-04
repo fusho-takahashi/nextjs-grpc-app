@@ -1,10 +1,10 @@
 "use client";
 
-import { useTimeline } from "../hooks/useTimeline";
+import { useTimelineContext } from "../context/TimelineContext";
 import { TweetItem } from "./TweetItem";
 
 export const Timeline = () => {
-  const { tweets } = useTimeline();
+  const { tweets } = useTimelineContext();
 
   return (
     <>
