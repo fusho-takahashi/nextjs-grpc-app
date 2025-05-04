@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+service TwitterClone {
+  rpc PostTweet (PostTweetRequest) returns (PostTweetResponse);
+  rpc GetTimeline (GetTimelineRequest) returns (GetTimelineResponse);
+}
+
+message PostTweetRequest {
+  string author = 1;
+  string content = 2;
+}
+
+message PostTweetResponse {
+  string id = 1;
+  string timestamp = 2;
+}
+
+message GetTimelineRequest {}
+
+message Tweet {
+  string id = 1;
+  string author = 2;
+  string content = 3;
+  string timestamp = 4;
+}
+
+message GetTimelineResponse {
+  repeated Tweet tweets = 1;
+}
